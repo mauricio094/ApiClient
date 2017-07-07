@@ -13,13 +13,8 @@ import java.net.URL;
  * Created by macau on 06/07/17.
  */
 public class ApiClient {
-    
 
-    public static void main(String[] args) {
-        ApiClient client = new ApiClient();
-        client.getRequest(sandboxMidwayIdClient, sandboxMidwayAccesToken, urlSandboxV1, parametroMarcas);
-        client.postRequest(sandboxMidwayIdClient, sandboxMidwayAccesToken, urlSandboxV2, parametroProdutos);
-    }
+
 
     public void getRequest(String idClient, String accessToken, String urlPath, String... parametros) {
         try {
