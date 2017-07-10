@@ -1,5 +1,13 @@
 package br.com.apiclient;
 
+<<<<<<< HEAD
+import br.com.apiclient.models.resources.ProductResource;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+=======
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,13 +16,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+>>>>>>> parent of d860d7a... post
 
 /**
  * Created by macau on 06/07/17.
  */
 public class ApiClient {
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> parent of d860d7a... post
 
     public void getRequest(String idClient, String accessToken, String urlPath, String... parametros) {
         try {
@@ -29,6 +41,26 @@ public class ApiClient {
             conn.setRequestProperty("client_id", idClient);
             conn.setRequestProperty("access_token", accessToken);
 
+<<<<<<< HEAD
+    public String getProductBySku(String sku) {
+        return client
+                .target(urlSandbox)
+                .path(sku)
+                .request(MediaType.APPLICATION_JSON)
+                .header("client_id", sandboxMidwayIdClient)
+                .header("access_token", sandboxMidwayAccesToken)
+                .get(String.class);
+    }
+
+    public Object postProduct(ProductResource product) {
+        return client
+                .target(urlSandbox)
+                .request(MediaType.APPLICATION_JSON)
+                .header("client_id", sandboxMidwayIdClient)
+                .header("access_token", sandboxMidwayAccesToken)
+                .post(Entity.entity(product, MediaType.APPLICATION_JSON))
+                .getEntity();
+=======
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP Error Code: " + conn.getResponseCode());
             }
@@ -47,6 +79,7 @@ public class ApiClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+>>>>>>> parent of d860d7a... post
     }
 
     public void postRequest(String idClient, String accessToken, String urlPath, String... parametros) {

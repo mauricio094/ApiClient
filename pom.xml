@@ -16,6 +16,7 @@
         <resteasy.version>2.2.1.GA</resteasy.version>
         <gatling.version>2.2.4</gatling.version>
         <junit.version>4.12</junit.version>
+        <jersey-client.version>2.25.1</jersey-client.version>
     </properties>
 
     <dependencies>
