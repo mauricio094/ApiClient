@@ -1,6 +1,6 @@
 package br.com.apiclient;
 
-import br.com.apiclient.models.resources.ProductResource;
+import br.com.apiclient.models.ProductResource;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
