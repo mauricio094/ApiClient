@@ -18,6 +18,11 @@ import java.net.ProtocolException;
 import java.net.URL;
 >>>>>>> parent of d860d7a... post
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+
 /**
  * Created by macau on 06/07/17.
  */
@@ -82,47 +87,14 @@ public class ApiClient {
 >>>>>>> parent of d860d7a... post
     }
 
-    public void postRequest(String idClient, String accessToken, String urlPath, String... parametros) {
-
-        try {
-            for (String parametro : parametros) {
-                urlPath = urlPath + "/" + parametro;
-            }
-            System.out.println(urlPath);
-            URL url = new URL(urlPath);
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("client_id", idClient);
-            conn.setRequestProperty("access_token", accessToken);
-
-            String input = "{\"qty\":100,\"name\":\"iPad 4\"}";
-
-            OutputStream os = conn.getOutputStream();
-            os.write(input.getBytes());
-            os.flush();
-
-            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-            }
-
-            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
-            conn.disconnect();
-
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Object postProduct(ProductResource product) {
+        return client
+                .target(urlSandbox)
+                .request(MediaType.APPLICATION_JSON)
+                .header("client_id", sandboxMidwayIdClient)
+                .header("access_token", sandboxMidwayAccesToken)
+                .post(Entity.entity(product, MediaType.APPLICATION_JSON))
+                .getEntity();
     }
+
 }
